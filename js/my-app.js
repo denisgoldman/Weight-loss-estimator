@@ -23,59 +23,7 @@ $$(document).on('page:init', function (e) {
   if(page.name === 'about') {
     //myApp.alert("Here is about page");
 
-    var testData = [20,15,5,10,11,8];
-
-    //Chart.defaults.global.defaultFontColor = 'red';
-    Chart.defaults.global.defaultFontSize = 16;
-    Chart.defaults.global.animation.duration = '1000';
-    Chart.defaults.global.animation.easing = 'easeOutSine';
-
-    var ctx = document.getElementById("myChart").getContext('2d');
-    var myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            //labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-            labels: getLabels(),
-            datasets: [{
-                label: 'Weight',
-                //data: [12, 19, 3, 5, 2, 3],
-                data: getData(),
-                backgroundColor: [
-                    'rgba(255, 59, 48, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255,59,48,1)'
-                ],
-                borderWidth: 3,
-                pointRadius: 0,
-                pointHitRadius: 20,
-                cubicInterpolationMode: 'default'
-            }]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero:false
-                    }
-                }]
-            },
-            legend: {
-              display: false
-            },
-            tooltips: {
-              enabled: true,
-              backgroundColor: 'rgba(255,255,255,1)',
-              titleFontColor: '#000',
-              titleFontSize: 16,
-              bodyFontColor: '#000',
-              bodyFontSize: 16,
-              displayColors: false,
-              borderColor: '#000',
-              borderWidth: 1
-            }
-        }
-    });
+    drawChart();
 
   }
 
@@ -91,4 +39,60 @@ function myAppTest() {
 
 function getMainView() {
   return mainView;
+}
+
+function drawChart() {
+  //Chart.defaults.global.defaultFontColor = 'red';
+  Chart.defaults.global.defaultFontSize = 16;
+  Chart.defaults.global.animation.duration = '1000';
+  Chart.defaults.global.animation.easing = 'easeOutSine';
+
+  var ctx = document.getElementById("myChart").getContext('2d');
+  ctx.height = 50;
+  var myChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+          //labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+          labels: getLabels(),
+          datasets: [{
+              label: 'Weight',
+              //data: [12, 19, 3, 5, 2, 3],
+              data: getData(),
+              backgroundColor: [
+                  'rgba(255, 59, 48, 0.2)'
+              ],
+              borderColor: [
+                  'rgba(255,59,48,1)'
+              ],
+              borderWidth: 3,
+              pointRadius: 0,
+              pointHitRadius: 20,
+              cubicInterpolationMode: 'default'
+          }]
+      },
+      options: {
+          maintainAspectRatio: false, //this will make the graph use assigned size
+          scales: {
+              yAxes: [{
+                  ticks: {
+                      beginAtZero:false
+                  }
+              }]
+          },
+          legend: {
+            display: false
+          },
+          tooltips: {
+            enabled: true,
+            backgroundColor: 'rgba(255,255,255,1)',
+            titleFontColor: '#000',
+            titleFontSize: 16,
+            bodyFontColor: '#000',
+            bodyFontSize: 16,
+            displayColors: false,
+            borderColor: '#000',
+            borderWidth: 1
+          }
+      }
+  });
 }
