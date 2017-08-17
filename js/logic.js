@@ -137,10 +137,15 @@ function calculateGoalWeight() {
 
 function calculateWeightLoss() {
 
-  labels.push(date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear());
+  //these do 2 times a month
+  /*labels.push(date.getDate() + "/" + parseMonth(date.getMonth()) + "/" + date.getFullYear());
+  data.push(weight.toFixed(1));*/
+
+  //these do 1 time per month
+  labels.push(parseMonth(date.getMonth()) + " " + date.getFullYear());
   data.push(weight.toFixed(1));
 
-while(weight >= goalWeight-1) {
+while(weight >= goalWeight-3) {
 
   var deficit = calculateTDEE() - calorieIntake;
   var kgDeficit = deficit/7700;
@@ -148,13 +153,24 @@ while(weight >= goalWeight-1) {
   addDays(1);
   age = age + 1/365;
 
-  if(date.getDate() == 1 || date.getDate() == 14) {
+  //this does two times a month
+  /*if(date.getDate() == 1 || date.getDate() == 14) {
     console.log("TDEE is: " + calculateTDEE());
 		console.log("Current age: " + age);
 		console.log("Day " + days + ": Current weight is: " + weight);
     console.log("The date is: " + date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear());
     console.log("---------------------")
-    labels.push(date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear());
+    labels.push(date.getDate() + "/" + parseMonth(date.getMonth()) + "/" + date.getFullYear());
+    data.push(weight.toFixed(1));
+  }*/
+
+  if(date.getDate() == 14) {
+    console.log("TDEE is: " + calculateTDEE());
+		console.log("Current age: " + age);
+		console.log("Day " + days + ": Current weight is: " + weight);
+    console.log("The date is: " + date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear());
+    console.log("---------------------")
+    labels.push(parseMonth(date.getMonth()) + " " + date.getFullYear());
     data.push(weight.toFixed(1));
   }
 
@@ -177,4 +193,48 @@ function getLabels() {
 
 function getData() {
   return data;
+}
+
+function parseMonth(month) {
+  switch (month) {
+    case 0: return "Jan";
+    break;
+
+    case 1: return "Feb";
+    break;
+
+    case 2: return "Mar";
+    break;
+
+    case 3: return "Apr";
+    break;
+
+    case 4: return "May";
+    break;
+
+    case 5: return "Jun";
+    break;
+
+    case 6: return "Jul";
+    break;
+
+    case 7: return "Aug";
+    break;
+
+    case 8: return "Sep";
+    break;
+
+    case 9: return "Oct";
+    break;
+
+    case 10: return "Nov";
+    break;
+
+    case 11: return "Dec";
+    break;
+
+    default: return "N/A";
+    break;
+
+  }
 }

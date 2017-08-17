@@ -25,6 +25,11 @@ $$(document).on('page:init', function (e) {
 
     var testData = [20,15,5,10,11,8];
 
+    //Chart.defaults.global.defaultFontColor = 'red';
+    Chart.defaults.global.defaultFontSize = 16;
+    Chart.defaults.global.animation.duration = '1000';
+    Chart.defaults.global.animation.easing = 'easeOutSine';
+
     var ctx = document.getElementById("myChart").getContext('2d');
     var myChart = new Chart(ctx, {
         type: 'line',
@@ -54,12 +59,22 @@ $$(document).on('page:init', function (e) {
                         beginAtZero:false
                     }
                 }]
+            },
+            legend: {
+              display: false
+            },
+            tooltips: {
+              enabled: true,
+              backgroundColor: 'rgba(255,255,255,1)',
+              titleFontColor: '#000',
+              titleFontSize: 16,
+              bodyFontColor: '#000',
+              bodyFontSize: 16,
+              displayColors: false,
+              borderColor: '#000',
+              borderWidth: 1
             }
-        },
-          tooltips: {
-            enbaled: false,
-            backgroundColor: ['rgba(255, 255, 255, 0.9)']
-          }
+        }
     });
 
   }
