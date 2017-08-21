@@ -47,8 +47,15 @@ function getMainView() {
 
 function drawChart() {
 
+  console.log("Window width: " + $(window).width() + " height: " + $(window).height());
+  console.log("Navbar height: " + $('#navbar').height());
+
+
+  //remove canvas before drawing the chart
   $('#myChart').remove();
-  $('#contentBlock').append('<canvas id="myChart" width="400" height="400"></canvas>');
+
+  //append new canvas to parent
+  $('#contentBlock').append('<canvas id="myChart" width="400" height="385"></canvas>');
 
   var chart = document.getElementById("myChart");
   var ctx = document.getElementById("myChart").getContext('2d');
@@ -73,10 +80,13 @@ function drawChart() {
   Chart.defaults.global.animation.duration = '1000';
   Chart.defaults.global.animation.easing = 'easeOutSine';
 
-  //var ctx = document.getElementById("myChart").getContext('2d');
 
 
-  //ctx.height = 50;
+  //chart.height = 700; //works
+  chart.height = $(window).height() - $('#navbar').height() - 50;
+
+  console.log("Chart width: " + $('#myChart').width() + " height: " + $('#myChart').height());
+
   var myChart = new Chart(ctx, {
       type: 'line',
       data: {
@@ -99,7 +109,7 @@ function drawChart() {
           }]
       },
       options: {
-          //maintainAspectRatio: true, //this will make the graph use assigned size
+          maintainAspectRatio: false, //this will make the graph use assigned size
           scales: {
               yAxes: [{
                   ticks: {
