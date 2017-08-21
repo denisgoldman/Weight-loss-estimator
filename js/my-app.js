@@ -41,14 +41,42 @@ function getMainView() {
   return mainView;
 }
 
+/*function clearCanvas() {
+  $('#myChart').remove();
+}*/
+
 function drawChart() {
+
+  $('#myChart').remove();
+  $('#contentBlock').append('<canvas id="myChart" width="400" height="400"></canvas>');
+
+  var chart = document.getElementById("myChart");
+  var ctx = document.getElementById("myChart").getContext('2d');
+
+  /*if (chart != null) {
+    //ctx.clearRect(0,0,chart.width, chart.height);
+    //myChart.destroy();
+    console.log("chart exists, need to delete it");
+    console.log(ctx);
+  }
+
+  if(myChart !== undefined) {
+    //this shit is always undefined
+    console.log("chart object exists");
+    console.log(myChart);
+  } else {
+    console.log("chart object doesn't exist");
+  }*/
+
   //Chart.defaults.global.defaultFontColor = 'red';
   Chart.defaults.global.defaultFontSize = 16;
   Chart.defaults.global.animation.duration = '1000';
   Chart.defaults.global.animation.easing = 'easeOutSine';
 
-  var ctx = document.getElementById("myChart").getContext('2d');
-  ctx.height = 50;
+  //var ctx = document.getElementById("myChart").getContext('2d');
+
+
+  //ctx.height = 50;
   var myChart = new Chart(ctx, {
       type: 'line',
       data: {
@@ -71,7 +99,7 @@ function drawChart() {
           }]
       },
       options: {
-          maintainAspectRatio: false, //this will make the graph use assigned size
+          //maintainAspectRatio: true, //this will make the graph use assigned size
           scales: {
               yAxes: [{
                   ticks: {

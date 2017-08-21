@@ -28,14 +28,14 @@ function calculate() {
   console.log("Data array: " + data);
 
   if (typeof Chart != "undefined") {
-    console.log("chart exists");
+    //console.log("chart exists");
     //ctx.clearRect(0,0,canvas.width, canvas.height);
   }
 
   //old chart needs to be destroyed!
-  if (document.getElementById("myChart") !== null) {
+  /*if (document.getElementById("myChart") !== null) {
     drawChart();
-  }
+  }*/
 
   //check if chart already exists, if not, don't call this
   if (typeof Chart != "undefined") {
@@ -222,6 +222,8 @@ while(parseFloat(weight) >= parseFloat(goalWeight-3)) {
 
     //this works
     getMainView().router.loadPage('about.html');
+
+    drawChart(); //this throws an error on the first time because canvas doesn't exist
 }
 
 function getLabels() {
