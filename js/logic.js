@@ -1,11 +1,11 @@
 
-var weight = 128;
-var age = 26;
-var height = 182;
+var weight;
+var age;
+var height;
 var days = 0;
-var calorieIntake = 2000;
-var goalWeight = 90;
-var activityLevel = 2;
+var calorieIntake;
+var goalWeight;
+var activityLevel;
 var female = false;
 var date = new Date();
 var checkPassed = true;
@@ -51,17 +51,14 @@ function addDays(days) {
 function readInputValues() {
 
   //assign all text input fields to variables
-  //console.log("read input values executed");
   weight = parseFloat(document.getElementById("currentWeightInput").value);
   age = parseFloat(document.getElementById("ageInput").value);
   height = parseFloat(document.getElementById("heightInput").value);
   calorieIntake = parseFloat(document.getElementById("calorieIntakeInput").value);
   goalWeight = parseFloat(document.getElementById("goalWeightInput").value);
-  //console.log("Weight: " + weight);
 
   //get selected gender
   var genderSelector = document.getElementById("genderSelect");
-  //console.log("Selected gender: " + genderSelector.options[genderSelector.selectedIndex].value);
 
   if (genderSelector.options[genderSelector.selectedIndex].value == "Female") {
     female = true;
@@ -71,9 +68,7 @@ function readInputValues() {
 
   //get activity level
   activityLevel = parseInt(getActivityLevel());
-  //console.log("New activity level is: " + activityLevel);
 
-  //alert("Weight: " + weight + " Age: " + age + " Height: " + height + " Calorie intake: " + calorieIntake + " Goal weight: " + goalWeight);
 }
 
 //checks input and throws errors in case some values are inadequate
@@ -165,11 +160,9 @@ function calculateTDEE() {
   var bmr;
 
   if(female) {
-    bmr = (10*weight) + (6.25*height) - (5*age) - 161;
-    //console.log("tdee entered loop as female");
+    bmr = (10*weight) + (6.25*height) - (5*age) - 161; //<-- this happens way too many times, optimize
   } else {
     bmr = (10*weight) + (6.25*height) - (5*age) + 5; //<-- this happens way too many times, optimize
-    //console.log("tdee entered loop as male");
   }
 
   var tdee = 0;
@@ -242,40 +235,26 @@ while(parseFloat(weight) >= parseFloat(goalWeight-3)) {
     data.push(weight.toFixed(1));
   }*/
 
+  //on the 14th day of each month add data to arrays that will be displayed on chart
   if(date.getDate() == 14) {
-    //console.log("TDEE is: " + calculateTDEE());
-		//console.log("Current age: " + age);
-    //console.log("Activity: " + activityLevel);
-		//console.log("Day " + days + ": Current weight is: " + weight);
-    //console.log("The date is: " + date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear());
-    //console.log("---------------------")
     labels.push(parseMonth(date.getMonth()) + " " + date.getFullYear());
     data.push(weight.toFixed(1));
   }
 
   if (calculateTDEE() <= calorieIntake) {
-				//console.log("Your TDEE is now less than calorie intake, this is the lowest weight you can achieve.");
-				//console.log("Weight: " +  weight);
         myApp.alert("You can't reach your goal weight with given calorie intake and level of activity. The lowest weight you can achieve is: " + weight.toFixed(1), "Oops!");
-        weight = 0; //this seems to stop the while loop
-
-				//break; //this needs to be here!!
+        weight = 0; //this needs to be here to break out of while loop
 			}
 
     }
 
-    //this works
+    //load about page that contains the chart
     getMainView().router.loadPage('about.html');
-
-    //console.log(getMainView().activePage.name);
 
     //draw chart even if we aren't on the index page
     if (getMainView().activePage.name != "index-1") {
       drawChart();
     }
-
-    //drawChart(); //this throws an error on the first time because canvas doesn't exist
-
 
 }
 

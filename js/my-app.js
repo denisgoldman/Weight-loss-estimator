@@ -18,38 +18,23 @@ var mainView = myApp.addView('.view-main', {
 
 //this works
 $$(document).on('page:init', function (e) {
+
   var page = e.detail.page;
 
   if(page.name === 'about') {
-    //myApp.alert("Here is about page");
-
     drawChart();
-
   }
 
   if(page.name === 'services') {
-    //myApp.alert("This is services page");
   }
 
 });
-
-function myAppTest() {
-  alert("well shit");
-}
 
 function getMainView() {
   return mainView;
 }
 
-/*function clearCanvas() {
-  $('#myChart').remove();
-}*/
-
 function drawChart() {
-
-  console.log("Window width: " + $(window).width() + " height: " + $(window).height());
-  console.log("Navbar height: " + $('#navbar').height());
-
 
   //remove canvas before drawing the chart
   $('#myChart').remove();
@@ -60,41 +45,21 @@ function drawChart() {
   var chart = document.getElementById("myChart");
   var ctx = document.getElementById("myChart").getContext('2d');
 
-  /*if (chart != null) {
-    //ctx.clearRect(0,0,chart.width, chart.height);
-    //myChart.destroy();
-    console.log("chart exists, need to delete it");
-    console.log(ctx);
-  }
-
-  if(myChart !== undefined) {
-    //this shit is always undefined
-    console.log("chart object exists");
-    console.log(myChart);
-  } else {
-    console.log("chart object doesn't exist");
-  }*/
-
-  //Chart.defaults.global.defaultFontColor = 'red';
+  //Global chart settings
   Chart.defaults.global.defaultFontSize = 16;
   Chart.defaults.global.animation.duration = '1000';
   Chart.defaults.global.animation.easing = 'easeOutSine';
 
-
-
   //chart.height = 700; //works
   chart.height = $(window).height() - $('#navbar').height() - 50;
 
-  console.log("Chart width: " + $('#myChart').width() + " height: " + $('#myChart').height());
-
+  //create chart with parameters
   var myChart = new Chart(ctx, {
       type: 'line',
       data: {
-          //labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
           labels: getLabels(),
           datasets: [{
               label: 'Weight',
-              //data: [12, 19, 3, 5, 2, 3],
               data: getData(),
               backgroundColor: [
                   'rgba(255, 59, 48, 0.2)'
