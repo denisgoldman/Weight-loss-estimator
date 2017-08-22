@@ -28,7 +28,7 @@ $$(document).on('page:init', function (e) {
   }
 
   if(page.name === 'services') {
-    myApp.alert("This is services page");
+    //myApp.alert("This is services page");
   }
 
 });
