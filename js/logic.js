@@ -15,13 +15,14 @@ var data = []; //this needs to be cleared before filling again
 //clicking the button calls this
 function calculate() {
 
+  var t0 = performance.now();
+
   checkPassed = true; //otherwise value will be permanently stuck in false if one of the checks failed
 
-  showStartingData();
+  //showStartingData();
   readInputValues();
   checkValues();
   checkIntake();
-  //calculateWeightLoss();
 
   //this doesn't work for some reason
   if(checkPassed) {
@@ -29,8 +30,8 @@ function calculate() {
     calculateWeightLoss();
   }
 
-  console.log("Labels array: " + labels);
-  console.log("Data array: " + data);
+  var t1 = performance.now();
+  console.log("Calculation took: " + (t1-t0).toFixed(3) + " ms");
 }
 
 //Adds specified number of days to current date
@@ -38,29 +39,29 @@ function addDays(days) {
   date.setDate(date.getDate() + days);
 }
 
-function showStartingData() {
+/*function showStartingData() {
   console.log("*STARTING PARAMETERS*");
   console.log("TDEE is: " + calculateTDEE());
   console.log("Current BMI is: " + calculateBMI().toFixed(1));
   console.log("Goal weight is probably: " + calculateGoalWeight());
   console.log("Actual activity level: " + activityLevel);
   console.log("--------------------------");
-}
+}*/
 
 function readInputValues() {
 
   //assign all text input fields to variables
-  console.log("read input values executed");
+  //console.log("read input values executed");
   weight = parseFloat(document.getElementById("currentWeightInput").value);
   age = parseFloat(document.getElementById("ageInput").value);
   height = parseFloat(document.getElementById("heightInput").value);
   calorieIntake = parseFloat(document.getElementById("calorieIntakeInput").value);
   goalWeight = parseFloat(document.getElementById("goalWeightInput").value);
-  console.log("Weight: " + weight);
+  //console.log("Weight: " + weight);
 
   //get selected gender
   var genderSelector = document.getElementById("genderSelect");
-  console.log("Selected gender: " + genderSelector.options[genderSelector.selectedIndex].value);
+  //console.log("Selected gender: " + genderSelector.options[genderSelector.selectedIndex].value);
 
   if (genderSelector.options[genderSelector.selectedIndex].value == "Female") {
     female = true;
@@ -70,7 +71,7 @@ function readInputValues() {
 
   //get activity level
   activityLevel = parseInt(getActivityLevel());
-  console.log("New activity level is: " + activityLevel);
+  //console.log("New activity level is: " + activityLevel);
 
   //alert("Weight: " + weight + " Age: " + age + " Height: " + height + " Calorie intake: " + calorieIntake + " Goal weight: " + goalWeight);
 }
@@ -111,8 +112,6 @@ function checkValues() {
     myApp.alert("Goal weight must be lower than current weight.", "Oops!");
     checkPassed = false;
   }
-
-
 
   //there needs to be a functionality that calculates goal weight based on BMI if field is left empty
   if (goalWeight == null || goalWeight == "" || isNaN(goalWeight)) {
@@ -167,7 +166,7 @@ function calculateTDEE() {
 
   if(female) {
     bmr = (10*weight) + (6.25*height) - (5*age) - 161;
-    console.log("tdee entered loop as female");
+    //console.log("tdee entered loop as female");
   } else {
     bmr = (10*weight) + (6.25*height) - (5*age) + 5; //<-- this happens way too many times, optimize
     //console.log("tdee entered loop as male");
@@ -244,19 +243,19 @@ while(parseFloat(weight) >= parseFloat(goalWeight-3)) {
   }*/
 
   if(date.getDate() == 14) {
-    console.log("TDEE is: " + calculateTDEE());
-		console.log("Current age: " + age);
-    console.log("Activity: " + activityLevel);
-		console.log("Day " + days + ": Current weight is: " + weight);
-    console.log("The date is: " + date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear());
-    console.log("---------------------")
+    //console.log("TDEE is: " + calculateTDEE());
+		//console.log("Current age: " + age);
+    //console.log("Activity: " + activityLevel);
+		//console.log("Day " + days + ": Current weight is: " + weight);
+    //console.log("The date is: " + date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear());
+    //console.log("---------------------")
     labels.push(parseMonth(date.getMonth()) + " " + date.getFullYear());
     data.push(weight.toFixed(1));
   }
 
   if (calculateTDEE() <= calorieIntake) {
-				console.log("Your TDEE is now less than calorie intake, this is the lowest weight you can achieve.");
-				console.log("Weight: " +  weight);
+				//console.log("Your TDEE is now less than calorie intake, this is the lowest weight you can achieve.");
+				//console.log("Weight: " +  weight);
         myApp.alert("You can't reach your goal weight with given calorie intake and level of activity. The lowest weight you can achieve is: " + weight.toFixed(1), "Oops!");
         weight = 0; //this seems to stop the while loop
 
@@ -268,7 +267,16 @@ while(parseFloat(weight) >= parseFloat(goalWeight-3)) {
     //this works
     getMainView().router.loadPage('about.html');
 
-    drawChart(); //this throws an error on the first time because canvas doesn't exist
+    //console.log(getMainView().activePage.name);
+
+    //draw chart even if we aren't on the index page
+    if (getMainView().activePage.name != "index-1") {
+      drawChart();
+    }
+
+    //drawChart(); //this throws an error on the first time because canvas doesn't exist
+
+
 }
 
 function getLabels() {
