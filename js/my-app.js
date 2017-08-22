@@ -133,4 +133,7 @@ function drawChart() {
           }
       }
   });
+
+  myApp.hidePreloader();
+
 }
