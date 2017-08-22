@@ -95,7 +95,27 @@ function drawChart() {
             displayColors: false,
             borderColor: '#000',
             borderWidth: 1
-          }
+          },
+          annotation: {
+            annotations: [{
+              //drawTime: "afterDatasetsDraw",
+              id: "hline",
+              type: "line",
+              mode: "horizontal",
+              scaleID: "y-axis-0",
+              value: goalWeight,
+              borderColor: "black",
+              borderWidth: 1,
+              borderDash: [2, 2],
+            label: {
+              backgroundColor: "white",
+              content: "Goal Weight",
+              enabled: true,
+              fontColor: "black"
+              }
+
+          }]
+        }
       }
   });
 
