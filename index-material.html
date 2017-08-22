@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>Weight estimator</title>
+    <!-- Path to Framework7 Library CSS-->
+    <link rel="stylesheet" href="css/framework7.material.min.css">
+    <!-- Path to Font Awesome -->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <!-- Path to your custom app styles-->
+    <link rel="stylesheet" href="css/my-app.css">
+    <link rel="stylesheet" href="css/framework7.material.colors.min.css">
+  </head>
+  <body class="layout-white theme-red">
+    <!-- Status bar overlay for fullscreen mode-->
+    <div class="statusbar-overlay"></div>
+    <!-- Panels overlay-->
+    <div class="panel-overlay"></div>
+    <!-- Left panel with reveal effect-->
+    <div class="panel panel-left panel-cover layout-dark">
+      <!-- Left view-->
+      <div class="view view-left navbar-through">
+        <div id="navbar" class="navbar">
+          <div class="navbar-inner">
+            <div class="left"></div>
+            <div class="center sliding">Enter values</div>
+            <div class="right"></div>
+          </div>
+        </div>
+        <div class="pages">
+          <div data-page="index-left" class="page">
+            <div class="page-content">
+
+<!-- Input fields -->
+<div class="content-block-title">Your stats</div>
+<div class="list-block">
+  <ul>
+    <li>
+      <!-- Label can be put here, needs to be styled in css -->
+      <div class="item-content">
+        <div class="item-media"><i class="fa fa-tachometer fa-lg"></i></div>
+        <div class="item-inner">
+          <!--<div class="item-title label">Current weight</div>-->
+          <div class="item-input">
+            <input id="currentWeightInput" type="number" placeholder="Current weight (kg)">
+          </div>
+        </div>
+      </div>
+    </li>
+
+    <li>
+      <div class="item-content">
+        <div class="item-media"><i class="fa fa-hourglass fa-lg"></i></div>
+        <div class="item-inner">
+          <!--<div class="item-title label">Current weight</div>-->
+          <div class="item-input">
+            <input id="ageInput" type="number" placeholder="Age">
+          </div>
+        </div>
+      </div>
+    </li>
+
+    <li>
+      <div class="item-content">
+        <div class="item-media"><i class="fa fa-arrows-v fa-lg"></i></div>
+        <div class="item-inner">
+          <!--<div class="item-title label">Current weight</div>-->
+          <div class="item-input">
+            <input id="heightInput" type="number" placeholder="Height (cm)">
+          </div>
+        </div>
+      </div>
+    </li>
+
+    <li>
+      <div class="item-content">
+        <div class="item-media"><i class="fa fa-flag-checkered fa-lg"></i></div>
+        <div class="item-inner">
+          <!--<div class="item-title label">Current weight</div>-->
+          <div class="item-input">
+            <input id="goalWeightInput" type="number" placeholder="Goal weight (kg)">
+          </div>
+        </div>
+      </div>
+    </li>
+
+    <li>
+      <div class="item-content">
+        <div class="item-media"><i class="fa fa-cutlery fa-lg"></i></div>
+        <div class="item-inner">
+          <!--<div class="item-title label">Current weight</div>-->
+          <div class="item-input">
+            <input id="calorieIntakeInput" type="number" placeholder="Calorie intake (kcal)">
+          </div>
+        </div>
+      </div>
+    </li>
+
+    <li>
+      <div class="item-content">
+        <div class="item-media"><i class="fa fa-venus-mars fa-lg"></i></div>
+        <div class="item-inner">
+          <!--<div class="item-title label">Current weight</div>-->
+          <div class="item-input">
+            <select id="genderSelect">
+              <option>Male</option>
+              <option>Female</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </li>
+
+  </ul>
+</div>
+
+<!-- Activity level radio selectors -->
+<div class="content-block-title">Activity level</div>
+<div class="list-block">
+  <ul>
+    <!-- Single radio input -->
+    <li>
+      <label class="label-radio item-content">
+        <!-- Checked by default -->
+        <input type="radio" name="my-radio" value="1" checked="checked">
+        <div class="item-media">
+          <i class="icon icon-form-radio"></i>
+        </div>
+        <div class="item-inner">
+          <div class="item-title">Couch potato</div>
+        </div>
+      </label>
+    </li>
+    <!-- Another radio input -->
+    <li>
+      <label class="label-radio item-content">
+        <input type="radio" name="my-radio" value="2">
+        <div class="item-media">
+          <i class="icon icon-form-radio"></i>
+        </div>
+        <div class="item-inner">
+          <div class="item-title">Light activity</div>
+        </div>
+      </label>
+    </li>
+
+    <li>
+      <label class="label-radio item-content">
+        <input type="radio" name="my-radio" value="3">
+        <div class="item-media">
+          <i class="icon icon-form-radio"></i>
+        </div>
+        <div class="item-inner">
+          <div class="item-title">Moderate activity</div>
+        </div>
+      </label>
+    </li>
+
+    <li>
+      <label class="label-radio item-content">
+        <input type="radio" name="my-radio" value="4">
+        <div class="item-media">
+          <i class="icon icon-form-radio"></i>
+        </div>
+        <div class="item-inner">
+          <div class="item-title">Heavy activity</div>
+        </div>
+      </label>
+    </li>
+
+    <li>
+      <label class="label-radio item-content">
+        <input type="radio" name="my-radio" value="5">
+        <div class="item-media">
+          <i class="icon icon-form-radio"></i>
+        </div>
+        <div class="item-inner">
+          <div class="item-title">Athlete</div>
+        </div>
+      </label>
+    </li>
+
+  </ul>
+</div>
+              <!-- Button to calculate weight loss -->
+              <p style="margin-left: 10%; margin-right: 10%;"><a onClick="calculate()" href="#" class="button button-big button-round color-red">Calculate</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Right panel with cover effect-->
+    <div class="panel panel-right panel-reveal layout-dark">
+      <div class="content-block">
+        <p>Weight Loss Calculator v0.1a</p>
+        <p>Creator of the app cannot be held liable for any potential harm caused by the use of this app. All data are estimates and might not accurately represent actual weight loss progress.</p>
+      </div>
+    </div>
+    <!-- Views-->
+    <div class="views">
+      <!-- Right view, it is main view-->
+      <div class="view view-main navbar-through">
+        <div class="navbar">
+          <div class="navbar-inner">
+            <div class="center sliding"></div>
+            <div class="right"><a href="#" data-panel="left" class="link open-panel icon-only"><i class="icon icon-bars"></i></a></div>
+          </div>
+        </div>
+        <!-- Pages-->
+        <div class="pages">
+          <!-- Page, data-page contains page name-->
+          <div data-page="index-1" class="page">
+            <!-- Scrollable page content-->
+            <div class="page-content">
+              <div class="content-block-title">How does it work?</div>
+              <div class="content-block">
+                <div class="content-block-inner">
+                  <p>The main principle of losing weight is CICO (Calories In, Calories Out). In other words, in order to lose weight you have to burn more calories than you intake.</p>
+                  <p>This app can calculate and visualize your weight loss progress based on some parameters. The calculation itself is based on <a href="https://en.wikipedia.org/wiki/Harris–Benedict_equation">Harris-Benedict equations</a> (revies by Mifflin and St. Jeor) and is fairly accurate.</p>
+                  <p><a href="#" data-panel="right" class="open-panel">About</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Most of the logic is here -->
+    <script src="js/logic.js"></script>
+    <!-- Path to Framework7 Library JS-->
+    <script type="text/javascript" src="js/framework7.min.js"></script>
+    <!-- Path to your app js-->
+    <script type="text/javascript" src="js/my-app.js"></script>
+    <!-- Chart.js library -->
+    <script src="js/Chart.js"></script>
+    <!-- Chart.js annotation plugin -->
+    <script src="js/chartjs-plugin-annotation.js"></script>
+    <!-- jQuery -->
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  </body>
+</html>
