@@ -61,12 +61,8 @@ function drawChart() {
           datasets: [{
               label: 'Weight',
               data: getData(),
-              backgroundColor: [
-                  'rgba(156, 39, 176, 0.2)'
-              ],
-              borderColor: [
-                  'rgba(156,39,176,1)'
-              ],
+              backgroundColor:'rgba(156, 39, 176, 0.2)',
+              borderColor: 'rgba(156,39,176,1)',
               borderWidth: 3,
               pointRadius: 0,
               pointHitRadius: 20,
